@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Morepanel\Http\Controllers;
+namespace Ycookies\Morepanel\Http\Controllers;
 
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Admin;

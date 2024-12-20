@@ -3,7 +3,7 @@
 </div>
 <br>
 
-### 基于到Dcat admin 的多应用管理器
+### 基于到dcat-plus admin 的多应用管理器
 
 1.可视化创建后台面板,可创建N个，每个后台面板有自己独立的用户，权限，角色，菜单，登陆页面。功能与admin后台面板一致。
 2.在管理页面，可以给管理用户重置登陆密码。
@@ -18,7 +18,7 @@
  - PHP >= 7.1.0
  - Laravel 5.5.0 ~ 9.*
  - Fileinfo PHP Extension
- - dcat-admin 2.2.2
+ - dcat-plus admin 1.*
  
 
 ### 安装

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Morepanel\Models;
+namespace Ycookies\Morepanel\Models;
 
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 

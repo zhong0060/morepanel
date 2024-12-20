@@ -1,13 +1,13 @@
 <?php
 
-namespace Dcat\Admin\Morepanel\Console\Commands;
+namespace Ycookies\Morepanel\Console\Commands;
 
 use Dcat\Admin\Support\Helper;
 use Illuminate\Filesystem\Filesystem;
 //use  Dcat\Admin\Console\InstallCommand;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Artisan;
-use Dcat\Admin\Morepanel\Models\MorepanelList;
+use Ycookies\Morepanel\Models\MorepanelList;
 
 class PanelCommand extends InstallCommand
 {

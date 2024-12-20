@@ -1,28 +1,41 @@
 <?php
 
-namespace Dcat\Admin\Morepanel\Http\Controllers;
+namespace Ycookies\Morepanel\Http\Controllers;
 
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
-use Dcat\Admin\Morepanel\Http\Controllers\Actions\Grid\PanelClose;
-use Dcat\Admin\Morepanel\Http\Controllers\Actions\Grid\PanelOpen;
-use Dcat\Admin\Morepanel\Http\Controllers\Renderable\PanelUserTable;
-use Dcat\Admin\Morepanel\Models\MorepanelList;
+use Ycookies\Morepanel\Http\Controllers\Actions\Grid\PanelClose;
+use Ycookies\Morepanel\Http\Controllers\Actions\Grid\PanelOpen;
+use Ycookies\Morepanel\Http\Controllers\Renderable\PanelUserTable;
+use Ycookies\Morepanel\Models\MorepanelList;
 use Dcat\Admin\Show;
 use Illuminate\Support\Facades\Artisan;
+use Dcat\Admin\Widgets\Alert;
 
 class MorepanelListController extends AdminController {
     /**
      * page index
      */
     public function index(Content $content) {
+        $htmls = <<<HTML
+<div>请把以下路由添加到 web.php 文件,</div>
+<div>
+<pre>
+   <code lang="php"> Route::get('/panelautologin/{panel}/{user}',\Ycookies\Morepanel\Http\Controllers\MorepanelController::class.'@panelautologin')->name('panelautologin')->middleware('signed');
+</code>
+</pre>
+</div>
+HTML;
+
+        $alert = Alert::make($htmls,'使用说明');
         return $content
             ->header('多应用后台管理')
             ->description('智能生成，高效管理')
             ->breadcrumb(['text' => '列表', 'uri' => ''])
-            ->body($this->grid());
+            ->row($alert->info())
+            ->row($this->grid());
     }
 
 
@@ -38,6 +51,7 @@ class MorepanelListController extends AdminController {
             $grid->column('panel_code', '后台空间名');
             $grid->column('panel_name', '后台中文名');
             $grid->column('panel_user', '后台管理员')
+
                 ->display('管理员列表')
                 ->expand(function () {
                     return PanelUserTable::make()->payload(['panel_code' => $this->panel_code]);

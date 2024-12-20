@@ -1,6 +1,6 @@
 <?php
 
-use Dcat\Admin\Morepanel\Http\Controllers;
+use Ycookies\Morepanel\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 Route::resource('morepanel/list', Controllers\MorepanelListController::class);
 Route::get('morepanel/index', Controllers\MorepanelController::class.'@index');

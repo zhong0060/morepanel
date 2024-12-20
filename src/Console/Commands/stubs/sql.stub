@@ -187,22 +187,37 @@ CREATE TABLE `DummyApp_settings` (
 --
 
 CREATE TABLE `DummyApp_users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `parent_id` int(11) DEFAULT '0' COMMENT '父级',
+  `order` int(11) DEFAULT '1' COMMENT '排序',
+  `email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '邮箱',
+  `email_verified` tinyint(4) DEFAULT NULL COMMENT '是否验证邮箱',
+  `balance` float(10,2) DEFAULT '0.00' COMMENT '余额',
+  `point` int(11) DEFAULT '0' COMMENT '积分',
+  `module_permissions` text COLLATE utf8mb4_unicode_ci COMMENT '模块权限',
+  `expired_at` datetime DEFAULT NULL COMMENT '到期时间',
+  `is_active` tinyint(4) DEFAULT '1' COMMENT '激活状态',
+  `phone` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '手机号码',
+  `last_login_time` datetime DEFAULT NULL COMMENT '最近登陆时间',
+  `last_login_ip` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '最近登陆IP',
+  `wx_openid` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信openid',
+  `off_login` tinyint(4) DEFAULT '0' COMMENT '禁止登陆',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- 转存表中的数据 `DummyApp_users`
 --
 
-INSERT INTO `DummyApp_users` (`id`, `username`, `password`, `name`, `avatar`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '$2y$10$EaD6zqQisQjCsFFl6iz/Bebq0M4/DxFKwavQqlh/b3U0xvZil2iTK', 'Administrator', NULL, NULL, '2022-12-19 18:19:39', '2022-12-19 18:19:39');
+INSERT INTO `DummyApp_users` (`username`, `password`, `name`, `avatar`, `remember_token`, `parent_id`, `order`, `email`, `email_verified`, `balance`, `point`, `module_permissions`, `expired_at`, `is_active`, `phone`, `last_login_time`, `last_login_ip`, `wx_openid`, `off_login`) VALUES
+('admin', '$2y$10$EaD6zqQisQjCsFFl6iz/Bebq0M4/DxFKwavQqlh/b3U0xvZil2iTK', 'Administrator', NULL, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 0);
 
 --
 -- 转储表的索引
@@ -271,13 +286,6 @@ ALTER TABLE `DummyApp_role_users`
 --
 ALTER TABLE `DummyApp_settings`
   ADD PRIMARY KEY (`slug`);
-
---
--- 表的索引 `DummyApp_users`
---
-ALTER TABLE `DummyApp_users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `DummyApp_users_username_unique` (`username`);
 
 --
 -- 在导出的表使用AUTO_INCREMENT

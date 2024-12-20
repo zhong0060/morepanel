@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Morepanel\Console\Commands;
+namespace Ycookies\Morepanel\Console\Commands;
 
 use Dcat\Admin\Models\AdminTablesSeeder;
 use Illuminate\Console\Command;

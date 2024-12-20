@@ -1,10 +1,10 @@
 <?php
 
-namespace Dcat\Admin\Morepanel;
+namespace Ycookies\Morepanel;
 
 use Dcat\Admin\Extend\ServiceProvider;
 use Dcat\Admin\Admin;
-use Dcat\Admin\Morepanel\Console\Commands\PanelCommand;
+use Ycookies\Morepanel\Console\Commands\PanelCommand;
 
 
 class MorepanelServiceProvider extends ServiceProvider

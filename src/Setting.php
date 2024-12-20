@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Morepanel;
+namespace Ycookies\Morepanel;
 
 use Dcat\Admin\Extend\Setting as Form;
 

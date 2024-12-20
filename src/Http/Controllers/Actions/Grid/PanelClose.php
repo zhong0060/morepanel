@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Morepanel\Http\Controllers\Actions\Grid;
+namespace Ycookies\Morepanel\Http\Controllers\Actions\Grid;
 
 
 use Dcat\Admin\Actions\Response;
@@ -9,7 +9,7 @@ use Dcat\Admin\Traits\HasPermissions;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Dcat\Admin\Morepanel\Models\MorepanelList;
+use Ycookies\Morepanel\Models\MorepanelList;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Artisan;
 class PanelClose extends RowAction

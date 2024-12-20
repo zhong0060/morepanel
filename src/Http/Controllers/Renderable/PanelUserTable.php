@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcat\Admin\Morepanel\Http\Controllers\Renderable;
+namespace Ycookies\Morepanel\Http\Controllers\Renderable;
 
 use Dcat\Admin\Grid;
 use Dcat\Admin\Grid\LazyRenderable;
@@ -11,25 +11,19 @@ use Illuminate\Support\Facades\URL;
 
 class PanelUserTable extends LazyRenderable
 {
-    public $min_panel_code;
-
     public function grid(): Grid
     {
         $panel_code = ucfirst($this->payload['panel_code']);
         $min_panel_code = lcfirst($this->payload['panel_code']); //小写
-        $this->min_panel_code = $min_panel_code;
         $model = "\App\\".ucfirst($panel_code)."\Models\Administrator";
         return Grid::make($model::with(['roles']), function (Grid $grid) use ($min_panel_code) {
             $grid->column('id', 'ID');
             $grid->column('username','用户名');
             $grid->column('name','名称');
-            //$grid->column('roles','角色')->pluck('name')->label('primary', 4);
-            //$grid->column('status','禁止登陆')->switch();
+            $grid->column('phone','手机号')->editable();
+            $grid->column('expired_at','到期时间')->editable();
             $grid->column('created_at','创建时间');
-            //$grid->column('updated_at');
-            //$grid->quickSearch(['id', 'username', 'name']);
-
-            $grid->paginate(10);
+            $grid->disablePagination();
             $grid->setActionClass(Grid\Displayers\Actions::class);
             $grid->enableDialogCreate(); // 打开弹窗创建
             //   快速添加
@@ -55,10 +49,6 @@ class PanelUserTable extends LazyRenderable
                 $form->hidden('panel_code')->value($min_panel_code);
                 $form->text('username', '账号')->value($actions->row->username)->disable()->required();
                 $form->hidden('user_id')->value($actions->row->id)->required();
-                //$form->disableEditingCheck();
-                //$form->disableCreatingCheck();
-                //$form->disableViewCheck();
-
                 $modal = Modal::make()
                     ->lg()
                     ->title('重置登陆密码')
