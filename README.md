@@ -50,12 +50,6 @@ composer require  ycookies/morepanel --dev
 
 ```
 
-> 2.为了免密自动登陆账号后台，需要在 `routes/web.php` 中 添加如下代码
-
-```php
-Route::get('/autologin/{panel}/{user}',\Ycookies\Morepanel\Http\Controllers\MorepanelController::class.'@autologin')->name('panelautologin')->middleware('signed');
-```
-
 
 
 

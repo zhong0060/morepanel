@@ -17,15 +17,17 @@ class PanelUserTable extends LazyRenderable
         $min_panel_code = lcfirst($this->payload['panel_code']); //小写
         $model = "\App\\".ucfirst($panel_code)."\Models\Administrator";
         return Grid::make($model::with(['roles']), function (Grid $grid) use ($min_panel_code) {
+            $grid->setResource('/morepanel/paneluser/');
             $grid->column('id', 'ID');
             $grid->column('username','用户名');
             $grid->column('name','名称');
-            $grid->column('phone','手机号')->editable();
-            $grid->column('expired_at','到期时间')->editable();
+            $grid->column('phone','手机号');
+            $grid->column('expired_at','到期时间');
             $grid->column('created_at','创建时间');
             $grid->disablePagination();
             $grid->setActionClass(Grid\Displayers\Actions::class);
             $grid->enableDialogCreate(); // 打开弹窗创建
+            $grid->showQuickEditButton();
             //   快速添加
             /*$grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
                 $request = Request();

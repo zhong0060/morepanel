@@ -5,7 +5,7 @@ namespace Ycookies\Morepanel;
 use Dcat\Admin\Extend\ServiceProvider;
 use Dcat\Admin\Admin;
 use Ycookies\Morepanel\Console\Commands\PanelCommand;
-
+use Illuminate\Support\Facades\Route;
 
 class MorepanelServiceProvider extends ServiceProvider
 {
@@ -46,8 +46,11 @@ class MorepanelServiceProvider extends ServiceProvider
 
 
 		parent::init();
-
-		//
+        Route::group(['middleware' => 'web'], function () {
+            Route::get('/panelautologin/{panel}/{user}', \Ycookies\Morepanel\Http\Controllers\MorepanelController::class.'@panelautologin')
+                ->name('panelautologin')
+                ->middleware('signed');
+        });
 		
 	}
 

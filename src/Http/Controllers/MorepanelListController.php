@@ -19,22 +19,10 @@ class MorepanelListController extends AdminController {
      * page index
      */
     public function index(Content $content) {
-        $htmls = <<<HTML
-<div>请把以下路由添加到 web.php 文件,</div>
-<div>
-<pre>
-   <code lang="php"> Route::get('/panelautologin/{panel}/{user}',\Ycookies\Morepanel\Http\Controllers\MorepanelController::class.'@panelautologin')->name('panelautologin')->middleware('signed');
-</code>
-</pre>
-</div>
-HTML;
-
-        $alert = Alert::make($htmls,'使用说明');
         return $content
             ->header('多应用后台管理')
             ->description('智能生成，高效管理')
             ->breadcrumb(['text' => '列表', 'uri' => ''])
-            ->row($alert->info())
             ->row($this->grid());
     }
 
