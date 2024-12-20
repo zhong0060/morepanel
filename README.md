@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="resources/assets/WFQxJ7qZ1k.png" height="80"> 
+    <img src="resources/assets/dcat-plus-logo.png" height="80"> 
 </div>
 <br>
 
