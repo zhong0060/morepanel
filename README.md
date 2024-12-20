@@ -9,6 +9,10 @@
 2.在管理页面，可以给管理用户重置登陆密码。
 3.在管理页面，可以免密登陆每个管理账号。
 
+### dcat-plus admin 框架文档
+- [文档地址](https://jikeadmin.saishiyun.net/books/dcatplus-admin/).
+
+
 ### 截图
 ![管理列表](resources/assets/image.png)
 ![创建管理面板](resources/assets/image2.png)
@@ -49,7 +53,7 @@ composer require  ycookies/morepanel --dev
 > 2.为了免密自动登陆账号后台，需要在 `routes/web.php` 中 添加如下代码
 
 ```php
-Route::get('/autologin/{panel}/{user}',\Dcat\Admin\Morepanel\Http\Controllers\MorepanelController::class.'@autologin')->name('panelautologin')->middleware('signed');
+Route::get('/autologin/{panel}/{user}',\Ycookies\Morepanel\Http\Controllers\MorepanelController::class.'@autologin')->name('panelautologin')->middleware('signed');
 ```
 
 
