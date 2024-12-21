@@ -127,14 +127,18 @@ class PanelUserController extends AdminController {
 
     public function form()
     {
-        return Form::make(Administrator::with(['roles']), function (Form $form) {
-            $userTable = config('admin.database.users_table');
+        $panel_code = request()->get('panel_code');
+        $panelCode = ucfirst($panel_code);
+        $model = "\App\\".$panelCode."\\Models\Administrator";
+        return Form::make($model::with(['roles']), function (Form $form) use($panel_code) {
+            $userTable = config($panel_code.'.database.users_table');
 
-            $connection = config('admin.database.connection');
+            $connection = config($panel_code.'.database.connection');
 
             $id = $form->getKey();
 
             $form->display('id', 'ID');
+            $form->hidden('panel_code')->value($panel_code);
             $form->text('username', trans('admin.username'))
                 ->required()
                 ->creationRules(['required', "unique:{$connection}.{$userTable}"])
@@ -184,7 +188,7 @@ class PanelUserController extends AdminController {
             if ($form->password && $form->model()->get('password') != $form->password) {
                 $form->password = bcrypt($form->password);
             }
-
+            $form->deleteInput('panel_code');
             if (! $form->password) {
                 $form->deleteInput('password');
             }

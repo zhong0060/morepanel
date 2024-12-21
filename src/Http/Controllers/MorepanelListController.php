@@ -35,12 +35,12 @@ class MorepanelListController extends AdminController {
     protected function grid() {
         return Grid::make(new MorepanelList(), function (Grid $grid) {
             $grid->column('id');
-            $grid->column('panel_logo', '后台logo')->image('', '50');
-            $grid->column('panel_code', '后台空间名');
-            $grid->column('panel_name', '后台中文名');
-            $grid->column('panel_user', '后台管理员')
+            $grid->column('panel_logo', '管理面板logo')->image('', '50');
+            $grid->column('panel_code', '管理面板空间名');
+            $grid->column('panel_name', '管理面板中文名');
+            $grid->column('panel_user', '面板用户')
 
-                ->display('管理员列表')
+                ->display('用户列表')
                 ->expand(function () {
                     return PanelUserTable::make()->payload(['panel_code' => $this->panel_code]);
                 });

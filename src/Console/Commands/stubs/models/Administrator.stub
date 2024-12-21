@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
-
+use Dcat\Admin\Traits\ModelTree;
 /**
  * Class Administrator.
  *
@@ -20,10 +20,12 @@ class Administrator extends Model implements AuthenticatableContract
 {
     use Authenticatable,
         HasPermissions,
-        HasDateTimeFormatter;
+        HasDateTimeFormatter,
+        ModelTree;
 
     const DEFAULT_ID = 1;
-
+    protected $titleColumn = 'name';
+    protected $depthColumn = 'depth';
     protected $fillable = ['username', 'password', 'name', 'avatar'];
 
     /**
